@@ -1,0 +1,8 @@
+psycopg2
+Flask 
+Flask-SQLAlchemy
+Flask-JWT-Extended
+python-dotenv
+Flask-Script
+Flask-Migrate
+passlib

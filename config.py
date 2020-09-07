@@ -8,6 +8,12 @@ class Config(object):
     CRSF_ENABLED = True
     SECRET_KEY = 'this_oops'
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URI']
+    SQLALCHEMY_USERNAME = 'user'
+    SQLALCHEMY_PASSWORD = 'pass'
+    SQLALCHEMY_DATABASE_NAME = 'datab4'
+    SQLALCHEMY_TABLE = 'migrations'
+    SQLALCHEMY_DB_SCHEMA = 'public'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProductionConfig(Config):
     DEBUG = False

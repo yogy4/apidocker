@@ -6,3 +6,6 @@ python-dotenv
 Flask-Script
 Flask-Migrate
 passlib
+gunicorn
+Werkzeug
+requests

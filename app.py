@@ -11,3 +11,6 @@ backserv.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(backserv)
 from controllers import controller
 backserv.register_blueprint(controller)
+
+# if __name__ == '__main__':
+#     backserv.run(host='0.0.0.0', port='5000')

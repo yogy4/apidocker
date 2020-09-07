@@ -10,5 +10,8 @@ RUN export LDFLAGS="-L/usr/local/opt/openssl/lib"
 RUN pip install -r requirements.txt
 COPY . /usr/src/app/
 EXPOSE 5000
-RUN ls -la app/
-ENTRYPOINT ["app/docker-entrypoint.sh"]
+RUN ls -la /usr/src/app/
+#USER root
+RUN ["chmod", "+x", "/usr/src/app/docker-entrypoint.sh"]
+# RUN python manage.py runserver
+ENTRYPOINT ["/usr/src/app/docker-entrypoint.sh"]

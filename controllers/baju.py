@@ -1,6 +1,10 @@
 from app import db
 # from flask import jsonify
 from conf.base import make_response, request, jwt_required, jsonify
+from app import Job
+from worker import conn
+import operator
+from app import q
 from models import Baju
 
 @jwt_required
@@ -81,3 +85,20 @@ def delete_baju(id):
                 }
             except Exception as e:
                 return (str(e))
+
+@jwt_required
+def create_with_queue():
+    if request.method == "POST":
+        job = q.enqueue_call(func=create_baju, result_ttl=5000)
+        print(job.get_id())
+
+@jwt_required
+def get_results(job_key):
+    job = Job.fetch(job_key, connection=conn)
+    if job.is_finished:
+        result = Baju.query.filter_by_id(id=job.result).first()
+        results = sorted(result.result_no_stop_word.items(), key=operator.itemgetter(1), reverse=True)[:10]
+        return jsonify(results)
+    else:
+        return "Nay", 202
+

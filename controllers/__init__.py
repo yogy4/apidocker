@@ -1,5 +1,5 @@
 from flask import Blueprint
-from controllers.baju import get_baju, get_baju_by_id, update_baju, create_baju, delete_baju
+from controllers.baju import get_baju, get_baju_by_id, update_baju, create_baju, delete_baju, create_with_queue, get_results
 from controllers.user import reg_user, login_user, update_user
 
 controller = Blueprint('controller', 'controllers', url_prefix='/api')
@@ -12,3 +12,5 @@ controller.add_url_rule('/baju', view_func=create_baju, methods=['POST'])
 controller.add_url_rule('/baju/:id', view_func=update_baju, methods=['PUT'])
 controller.add_url_rule('/baju/:id', view_func=get_baju_by_id, methods=['GET'])
 controller.add_url_rule('/baju/:id', view_func=delete_baju, methods=['DELETE'])
+controller.add_url_rule('/baju_with_queue', view_func=create_with_queue, methods=['POST'])
+controller.add_url_rule('result/<job_key>', view_func=get_results, methods=['GET'])
